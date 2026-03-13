@@ -1,0 +1,16 @@
+version: '1.0'
+
+services:
+  extractor:
+    build: .
+    container_name: mcd_shift_extractor
+    volumes:
+      - ./src:/app
+      - /home/meetisa/Archivio/Documenti/orari_mc:/data_input:ro
+      - ./output:/data_output
+      - ./src/filtered:/app/filtered
+
+    environment:
+      - CREW="AMADUCCI SAMUELE"
+      - LANG=it_IT.UTF-8
+
