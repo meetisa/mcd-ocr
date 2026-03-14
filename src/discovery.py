@@ -1,8 +1,9 @@
 import re
 from pathlib import Path
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from .models import ImageMetadata
+
 
 class FileDiscovery:
     def __init__(self, directory: Path):
@@ -13,7 +14,9 @@ class FileDiscovery:
         match = self.pattern.search(filename)
         if match:
             try:
-                return datetime.strptime(f"{match.group(1)}{match.group(2)}", "%Y%m%d%H%M%S")
+                return datetime.strptime(
+                    f"{match.group(1)}{match.group(2)}", "%Y%m%d%H%M%S"
+                )
             except ValueError:
                 return None
         return None
@@ -27,7 +30,5 @@ class FileDiscovery:
         timestamp = self._parse_timestamp(latest_path.name) or datetime.fromtimestamp(0)
 
         return ImageMetadata(
-            path=latest_path,
-            timestamp=timestamp,
-            raw_name=latest_path.name
+            path=latest_path, timestamp=timestamp, raw_name=latest_path.name
         )
