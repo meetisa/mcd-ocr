@@ -20,7 +20,7 @@ class ImageProcessor:
             gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2
         )
 
-    def process(self, image_path: Path) -> np.ndarray:
+    def process(self, image_path: Path, apply_morphology: bool = False) -> np.ndarray:
         img = cv2.imread(str(image_path))
         if img is None:
             raise IOError(f"Impossibile leggere l'immagine al percorso {image_path}")
@@ -28,6 +28,8 @@ class ImageProcessor:
         gray = self._to_grayscale(img)
         binary = self._apply_adaptive_threshold(gray)
 
-        cleaned = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, self.kernel)
+        if not apply_morphology:
+            return binary
 
+        cleaned = cv2.morphologyEx(binary, cv2.MORPH_OPEN, self.kernel)
         return cleaned
