@@ -14,8 +14,10 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY src/ .
+COPY src/ /app/src
 
 VOLUME ["/data_input", "/data_output"]
 
-CMD ["python", "extract.py"]
+ENV PYTHONPATH="/app"
+
+CMD ["python", "-m", "src.main"]

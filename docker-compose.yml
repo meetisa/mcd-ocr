@@ -5,10 +5,10 @@ services:
     build: .
     container_name: mcd_shift_extractor
     volumes:
-      - ./src:/app
+      - ./src:/app/src
       - /home/meetisa/Archivio/Documenti/orari_mc:/data_input:ro
       - ./output:/data_output
-      - ./src/filtered:/app/filtered
+      - ./src/filtered:/app/src/filtered
 
     environment:
       - CREW="AMADUCCI SAMUELE"
