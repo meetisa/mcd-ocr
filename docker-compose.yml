@@ -8,7 +8,7 @@ services:
       - ./src:/app/src
       - /home/meetisa/Archivio/Documenti/orari_mc:/data_input:ro
       - ./output:/data_output
-      - ./src/filtered:/app/src/filtered
+      - ./tests:/app/tests
 
     environment:
       - CREW="AMADUCCI SAMUELE"

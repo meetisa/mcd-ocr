@@ -1,4 +1,3 @@
-import discovery
 import pytest
 from pathlib import Path
 from src.discovery import FileDiscovery
@@ -13,7 +12,7 @@ def test_get_latest_file_correct_ordering(tmp_path: Path):
     discovery = FileDiscovery(d)
     result = discovery.get_latest()
 
-    assert result.raw_name = "20260214_120000.jpg"
+    assert result.raw_name == "20260214_120000.jpg"
 
 def test_file_not_found_raises_exception(tmp_path: Path):
     empty_dir = tmp_path / "vuota"
