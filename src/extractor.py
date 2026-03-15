@@ -7,7 +7,8 @@ from .models import OCRWord, BoundingBox
 class TesseractExtractor:
     def __init__(self, lang: str = "ita") -> None:
         self.lang = lang
-        self.config = "--psm 6"
+        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:-"
+        self.config = f"--psm 11 -c tessedit_char_whitelist={chars}"
 
     def extract(self, processed_image: np.ndarray) -> List[OCRWord]:
         data = pytesseract.image_to_data(
