@@ -20,11 +20,14 @@ def main():
     print(f"[+] Immagine processata salvata in: {output_path}")
     print(f"[+] Risoluzione: {processed_matrix.shape}")
 
-    print(f"[+] Verificando struttura tabella su: {latest.raw_name}")
-    table_debug_img = processor.test_table_detection(latest.path)
-    output_path = Path("/data_output/table_structure_debug.png")
-    cv2.imwrite(str(output_path), table_debug_img)
-    print(f"[+] Vista di debug salvata in: {output_path}")
+    # print(f"[+] Verificando struttura tabella su: {latest.raw_name}")
+    # table_debug_img = processor.test_table_detection(latest.path)
+    # output_path = Path("/data_output/table_structure_debug.png")
+    # cv2.imwrite(str(output_path), table_debug_img)
+    # print(f"[+] Vista di debug salvata in: {output_path}")
+
+    # processor.text_slice_row(latest.path, 17)
+    processor.debug_all_cells(latest.path)
 
     """
     extractor = TesseractExtractor()
